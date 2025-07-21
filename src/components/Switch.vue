@@ -16,29 +16,28 @@ export default defineComponent({
 })
 </script>
 <template>
-    <div :aria-checked="checked"
-         :class="{ 'toggle--checked': checked }"
-         class="toggle"
-         role="checkbox"
-         tabindex="0"
-         @click="toggle"
-         @keydown.space.prevent="toggle"
-         @keydown.enter.prevent="toggle"
+    <label :class="{ 'toggle--checked': checked }"
+           class="toggle"
+           @click="toggle"
     >
-        <div class="toggle__track"></div>
-        <div class="toggle__thumb"></div>
-    </div>
+        <span :aria-checked="checked"
+              class="toggle__q"
+              role="checkbox"
+              tabindex="0"
+              @keydown.space.prevent="toggle"
+              @keydown.enter.prevent="toggle"
+        >
+            <span class="toggle__track"></span>
+            <span class="toggle__thumb"></span>
+        </span>
+        <span>Just test for interaction</span>
+    </label>
 </template>
 <style lang="scss" scoped>
 .toggle {
-    display: inline-flex;
     cursor: pointer;
-    align-items: center;
-    width: 44px;
-    height: 24px;
-    position: relative;
-    user-select: none;
-    outline: none;
+    display: inline-flex;
+    gap: 16px;
 
     &__track {
         width: 100%;
@@ -68,6 +67,17 @@ export default defineComponent({
         left: 22px;
         background: #fff;
     }
+}
+
+.toggle__q {
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    width: 44px;
+    height: 24px;
+    position: relative;
+    user-select: none;
+    outline: none;
 }
 
 .toggle:focus {

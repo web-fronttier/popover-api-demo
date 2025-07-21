@@ -5,7 +5,6 @@ import Switch from "./components/Switch.vue";
 
 import {ref} from 'vue'
 
-const isChecked = ref(false);
 const alwaysTrue = ref(true);
 const alwaysFalse = ref(false);
 </script>

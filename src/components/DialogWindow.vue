@@ -1,5 +1,6 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default defineComponent({
     name: 'DialogWindow',
@@ -59,11 +60,11 @@ export default defineComponent({
          @click="handleBackdropClick"
     >
         <div class="dialog__window">
-            <h2>Это {{ isModal ? 'модальное' : 'диалоговое, не модальное' }} окно!</h2>
+            <h2>This is {{ isModal ? 'modal' : 'non-modal' }} popup window!</h2>
             <button class="dialog__close" @click="closeDialog">x</button>
         </div>
     </div>
-    <button @click="openDialog">{{ isModal ? 'Модальное' : 'Диалоговое' }} окно</button>
+    <button class="btn btn-primary btn-lg" @click="openDialog">{{ isModal ? 'Modal' : 'Non-modal' }}</button>
 </template>
 
 <style lang="scss" scoped>
