@@ -48,29 +48,3 @@ button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
-
-main {
-    width: 100%;
-    padding: 8px 32px;
-}
-
-section,
-.section {
-    display: flex;
-    gap: 16px;
-    margin: 64px auto;
-    padding: 16px;
-}
-
-.section--centered {
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-article {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
