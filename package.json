@@ -5,6 +5,7 @@
     "type": "module",
     "dependencies": {
         "bootstrap": "^5.3.7",
+        "tippy.js": "^6.3.7",
         "vue": "^3.5.17"
     },
     "devDependencies": {
