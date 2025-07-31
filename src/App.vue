@@ -29,6 +29,12 @@ const alwaysFalse = ref(false);
                     <h2 class="article__title">Tooltips</h2>
                     <div class="article__main">
                         <Tooltip content="This is a tooltip. It MUST have a parent." />
+                        <Tooltip content="This one is visible on CLICK"
+                                 type="click"
+                        />
+                        <Tooltip content="This one is visible on FOCUS"
+                                 type="focus"
+                        />
                     </div>
                 </article>
             </section>

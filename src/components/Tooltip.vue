@@ -1,48 +1,49 @@
-<script lang="ts">
-import {defineComponent, onBeforeUnmount, onMounted, ref} from 'vue';
-import type {Instance, Props} from 'tippy.js';
-import tippy from 'tippy.js';
+<script lang="ts" setup>
+import {onBeforeUnmount, onMounted, ref} from 'vue';
+import tippy, {type Instance, type Props} from 'tippy.js';
 
-export default defineComponent({
-    name: 'Tooltip',
-    props: {
-        content: {
-            type: String,
-            required: true
+const props = defineProps<{
+    content: string,
+    type?: 'click' | 'focus',
+}>();
+
+const triggerRef = ref<HTMLElement | null>(null);
+let tip: Instance<Props> | null = null;
+
+onMounted(() => {
+    if (triggerRef.value) {
+        const tippyProps: Record<string, any> = {
+            content: props.content,
+            placement: 'top',
+        };
+        if (props.type) {
+            tippyProps.trigger = props.type;
         }
-    },
-    setup(props) {
-        const triggerRef = ref<HTMLElement | null>(null);
-        let tip: Instance<Props> | null = null;
 
-        onMounted(() => {
-            if (triggerRef.value) {
-                tip = tippy(triggerRef.value, {
-                    content: props.content,
-                    placement: 'top',
-                });
-            }
-        })
-
-        onBeforeUnmount(() => {
-            if (tip) {
-                tip.destroy();
-            }
-        })
-
-        return {triggerRef}
+        tip = tippy(triggerRef.value, tippyProps);
     }
-})
+});
+
+onBeforeUnmount(() => {
+    tip?.destroy();
+});
 </script>
 <template>
-    <span ref="triggerRef" class="tippy-tooltip__trigger">
-        <slot>Tooltip on hover</slot>
-    </span>
+    <a ref="triggerRef"
+       class="tippy-tooltip"
+       href="#"
+    >Tooltip on {{ props.type ?? 'hover' }}</a>
 </template>
 <style lang="scss" scoped>
-.tippy-tooltip__trigger {
+.tippy-tooltip {
     cursor: pointer;
     color: #336dcc;
     text-decoration: underline dotted;
+
+    &:focus-visible {
+        outline: 2px solid black;
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
 }
 </style>
